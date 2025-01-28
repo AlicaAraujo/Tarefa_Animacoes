@@ -1,4 +1,4 @@
-// Padded and checksummed version of: D:/Cursos/Embarcatech/grupo03sub06/Tarefa_Animacoes/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb
