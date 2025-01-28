@@ -1,4 +1,4 @@
-# Install script for directory: /home/esantos/.pico-sdk/sdk/2.1.0/src/rp2_common/pico_platform_compiler
+# Install script for directory: /home/esantos/.pico-sdk/sdk/2.1.0/src/rp2_common/pico_lwip/tools
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
