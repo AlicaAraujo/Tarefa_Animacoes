@@ -1,4 +1,4 @@
-// Padded and checksummed version of: C:/Users/alici/OneDrive/Documentos/EmbarcaTech/animacao_MatrizLED/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: /home/esantos/Projects/VSCode_pico/Tarefa_animacoes/Tarefa_Animacoes/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb
