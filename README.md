@@ -12,6 +12,7 @@ Este repositório contém o projeto de controle de uma matriz de LEDs RGB 5x5 ut
   - `D`: Liga todos os LEDs na cor verde com 50% de intensidade.
   - `#`: Liga todos os LEDs na cor branca com 20% de intensidade.
   - `*`: Reinicia o sistema para modo de gravação.
+  
 - **Sinalização Opcional:** Integração de som com um buzzer para algumas animações.
 
 ## Estrutura do Projeto
