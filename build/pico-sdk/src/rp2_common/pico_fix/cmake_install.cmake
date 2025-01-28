@@ -1,8 +1,8 @@
-# Install script for directory: /home/esantos/.pico-sdk/sdk/2.1.0/src/rp2_common/pico_fix
+# Install script for directory: C:/Users/david/.pico-sdk/sdk/2.1.0/src/rp2_common/pico_fix
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/animacao_MatrizLED")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/home/esantos/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump")
+  set(CMAKE_OBJDUMP "C:/Users/david/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/esantos/Projects/VSCode_pico/Tarefa_animacoes/Tarefa_Animacoes/build/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/cmake_install.cmake")
+  include("D:/Cursos/Embarcatech/grupo03sub06/Tarefa_Animacoes/build/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/cmake_install.cmake")
 endif()
 
