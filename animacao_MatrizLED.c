@@ -13,14 +13,14 @@
 #define OUT_PIN 7 // GPIO usado para controlar a matriz de LEDs
 
 // Configurações para o teclado matricial
-#define TECLADO_PIN_1 28 // GPIO conectado à linha 1 do teclado
-#define TECLADO_PIN_2 27 // GPIO conectado à linha 2 do teclado
-#define TECLADO_PIN_3 26 // GPIO conectado à linha 3 do teclado
-#define TECLADO_PIN_4 22 // GPIO conectado à linha 4 do teclado
-#define COL1_PIN 21 // GPIO conectado à coluna 1 do teclado
-#define COL2_PIN 20 // GPIO conectado à coluna 2 do teclado
-#define COL3_PIN 19 // GPIO conectado à coluna 3 do teclado
-#define COL4_PIN 18 // GPIO conectado à coluna 4 do teclado
+#define TECLADO_PIN_1 28 // GPIO conectado à linha 1 
+#define TECLADO_PIN_2 27 // GPIO conectado à linha 2 
+#define TECLADO_PIN_3 26 // GPIO conectado à linha 3 
+#define TECLADO_PIN_4 22 // GPIO conectado à linha 4
+#define COL1_PIN 21 // GPIO conectado à coluna 1
+#define COL2_PIN 20 // GPIO conectado à coluna 2
+#define COL3_PIN 19 // GPIO conectado à coluna 3
+#define COL4_PIN 18 // GPIO conectado à coluna 4
 
 // Declaração das funções de animação (prototipadas)
 void animacao_1(PIO pio, uint sm, int fps);
@@ -270,7 +270,7 @@ void animacao_3(PIO pio, uint sm, int fps) {
     }
 }
 
-// Animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
+// Animação 4: Exibe uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Máquina de estado usada para o controle
@@ -398,6 +398,80 @@ void animacao_6(PIO pio, uint sm, int fps) {
     }
 }
 
+// Animação 7: Exibe uma sequência de quadros com padrões de LEDs alternando entre diferentes cores
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_7(PIO pio, uint sm, int fps) { 
+    for (int frame = 0; frame < 5; frame++) {
+        // Define a cor padrão (preta) para os LEDs que não estão ativos no padrão atual
+        uint32_t color2 = calcular_cor_rgb(0.0, 0.0, 0.0);
+        
+        // Quadro 0: Define LEDs ativos com a cor verde
+        if (frame == 0) {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0);
+                if (i == 2 || i == 3 || i == 4 || i == 8 || i == 5 || i == 10 || i == 14 || 
+                    i == 18 || i == 15 || i == 22 || i == 23 || i == 24) {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        } 
+        // Quadro 1: Define LEDs ativos com a cor roxa
+        else if (frame == 1) {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.5);
+                if (i == 0 || i == 4 || i == 5 || i == 6 || i == 7 || i == 8 || i == 9 || 
+                    i == 11 || i == 13 || i == 16 || i == 18 || i == 22) {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }
+        // Quadro 2: Define LEDs ativos com a cor amarela
+        else if (frame == 2) {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0);
+                if (i == 2 || i == 6 || i == 8 || i == 11 || i == 13 || i == 15 || i == 19 || 
+                    i == 20 || i == 24) {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }
+        // Quadro 3: Define LEDs ativos com a cor verde, formando um padrão vertical
+        else if (frame == 3) {
+            for (int i = 0; i < NUM_PIXELS - 1; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0);
+                if (i == 2 || i == 7 || i == 12 || i == 17 || i == 22) {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }
+        // Quadro 4: Retorna ao padrão inicial com LEDs ativos na cor azul
+        else {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5);
+                if (i == 2 || i == 3 || i == 4 || i == 8 || i == 5 || i == 10 || i == 14 || 
+                    i == 18 || i == 15 || i == 22 || i == 23 || i == 24) {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }
+        // Aguarda o próximo quadro, com a duração controlada pela taxa de quadros por segundo (fps)
+        sleep_ms(1000 / fps);
+    }
+}
+
 // Função para executar a ação correspondente à tecla pressionada
 // Parâmetros:
 // - key: Caractere da tecla pressionada
@@ -422,6 +496,9 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
             break;
         case '6': // Executa a animação 6 com 2 fps
             animacao_6(pio, sm, 2);
+            break;
+        case '7': // Executa a animação 7 com 5 fps
+            animacao_7(pio, sm, 5);
             break;
         case 'A': // Desliga todos os LEDs (cor preta)
             configurar_todos_leds(pio, sm, 0.0, 0.0, 0.0);
