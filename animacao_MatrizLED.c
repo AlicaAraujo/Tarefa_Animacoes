@@ -58,6 +58,33 @@ void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
 }
 
 
+// Configura alguns LEDs para uma cor específica
+// Parâmetros:
+// - int *leds : ponteiro para vetor contendo os LEDs que serão acesos
+// - int quant_leds : quantidade de LEDs que acenderão
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - r: Intensidade da cor vermelha (0.0 a 1.0)
+// - g: Intensidade da cor verde (0.0 a 1.0)
+// - b: Intensidade da cor azul (0.0 a 1.0)
+void configurar_alguns_leds(int *leds,int quant_leds,PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        bool selecionado = false;
+        for(int j=0;j<quant_leds;j++){
+            if(i==leds[j]){
+                selecionado=true;
+            }
+        }
+        if(selecionado){
+            uint32_t color = calcular_cor_rgb(b, r, g);
+            pio_sm_put_blocking(pio, sm, color);
+        }else{
+            pio_sm_put_blocking(pio, sm, 0);
+        }
+        
+    }
+}
+
 
 // Configura a GPIO e inicializa a PIO para controlar os LEDs
 // Parâmetros:
