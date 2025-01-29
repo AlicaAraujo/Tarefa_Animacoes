@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Edcarllos Santos",
+  "author": "Grupo 3 Subgrupo 6",
   "editor": "wokwi",
   "parts": [
     {
@@ -45,13 +45,6 @@
     { "type": "wokwi-vcc", "id": "vcc4", "top": -277.64, "left": -384, "attrs": {} },
     { "type": "wokwi-vcc", "id": "vcc5", "top": -364.04, "left": -48, "attrs": {} },
     { "type": "wokwi-gnd", "id": "gnd5", "top": -268.8, "left": -48.6, "attrs": {} },
-    {
-      "type": "wokwi-pushbutton",
-      "id": "btn1",
-      "top": 255.8,
-      "left": 0,
-      "attrs": { "color": "green" }
-    },
     {
       "type": "wokwi-membrane-keypad",
       "id": "keypad1",
@@ -148,8 +141,6 @@
     [ "rgb23:VSS", "gnd5:GND", "green", [ "v0" ] ],
     [ "rgb24:VSS", "gnd5:GND", "green", [ "v0" ] ],
     [ "rgb25:VSS", "gnd5:GND", "green", [ "v0" ] ],
-    [ "pico:GP6", "btn1:1.l", "red", [ "h-28.8", "v28.8", "h-9.6", "v153.6" ] ],
-    [ "btn1:2.l", "pico:GND.6", "red", [ "h-19.2", "v67.4" ] ],
     [ "keypad1:R1", "pico:GP28", "green", [ "v134.4", "h-211.2" ] ],
     [ "keypad1:R2", "pico:GP27", "green", [ "v153.6", "h-221.2" ] ],
     [ "keypad1:R3", "pico:GP26", "green", [ "v163.2", "h-230.7" ] ],

@@ -59,6 +59,33 @@ void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
     }
 }
 
+// Configura alguns LEDs para uma cor específica
+// Parâmetros:
+// - int *leds : ponteiro para vetor contendo os LEDs que serão acesos
+// - int quant_leds : quantidade de LEDs que acenderão
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - r: Intensidade da cor vermelha (0.0 a 1.0)
+// - g: Intensidade da cor verde (0.0 a 1.0)
+// - b: Intensidade da cor azul (0.0 a 1.0)
+void configurar_alguns_leds(int *leds,int quant_leds,PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        bool selecionado = false;
+        for(int j=0;j<quant_leds;j++){
+            if(i==leds[j]){
+                selecionado=true;
+            }
+        }
+        if(selecionado){
+            uint32_t color = calcular_cor_rgb(b, r, g);
+            pio_sm_put_blocking(pio, sm, color);
+        }else{
+            pio_sm_put_blocking(pio, sm, 0);
+        }
+        
+    }
+}
+
 // Função para configurar a GPIO e inicializar o PIO para controlar a matriz
 // Parâmetros:
 // - pio: Instância do bloco PIO
@@ -242,6 +269,73 @@ void animacao_3(PIO pio, uint sm, int fps) {
         sleep_ms(1000 / fps);
     }
 }
+
+// Animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_4(PIO pio, uint sm, int fps){
+    
+    uint32_t delay = 1000/fps;
+    int numero0[12] = {23,22,21,18,11,8,1,2,3,6,13,16};
+    int numero1[5] = {21,18,11,8,1};
+    int numero2[11] = {23,22,21,18,11,12,13,6,3,2,1};
+    int numero3[11] = {23,22,21,18,11,12,13,8,1,2,3};
+    int numero4[9] = {23,16,13,12,11,18,21,8,1};
+    int numero5[11] = {21,22,23,16,13,12,11,8,1,2,3};
+    int numero6[12] = {21,22,23,16,13,6,3,2,1,8,11,12};
+    int numero7[7] = {23,22,21,18,11,8,1};
+    int numero8[13] = {23,22,21,18,11,8,1,2,3,6,13,16,12};
+    int numero9[12] = {12,13,16,23,22,21,18,11,8,1,2,3};
+
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero9,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=13;i++){configurar_alguns_leds(numero8,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=7;i++){configurar_alguns_leds(numero7,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero6,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero5,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=9;i++){configurar_alguns_leds(numero4,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero3,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero2,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=5;i++){configurar_alguns_leds(numero1,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero0,i,pio,sm,1.0,1.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+
+}
+
+/* Animação 5: Exibe uma onda senoidal de cores passando pelos LEDs, criando um efeito dinâmico e suave de transição 
+   entre as cores azul, vermelho e verde. A animação utiliza uma fórmula de onda senoidal para calcular as cores em cada LED.*/
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_5(PIO pio, uint sm, int fps) {
+    const int delay = 1000 / fps;  // Calcula o intervalo de tempo por frame em milissegundos
+    const double pi = 3.14159265359; // Valor de pi
+    const int frames = 100;       // Número de frames para completar a animação
+    const double step = 2 * pi / NUM_PIXELS; // Distância entre os LEDs na onda senoidal
+
+    for (int frame = 0; frame < frames; frame++) { // Loop para cada frame da animação
+        for (int i = 0; i < NUM_PIXELS; i++) { // Loop para cada LED no display
+            // Calcula a posição da onda senoidal para o LED atual
+            double wave_position = frame * step + i * step;
+
+            // Calcula os valores normalizados (de 0 a 1) para as componentes de cor (R, G, B)
+            double r = (sin(wave_position) + 1) / 2;                 // Vermelho
+            double g = (sin(wave_position + 2 * pi / 3) + 1) / 2;   // Verde
+            double b = (sin(wave_position + 4 * pi / 3) + 1) / 2;   // Azul
+
+            // Combina as componentes R, G e B para formar a cor do LED
+            uint32_t color = calcular_cor_rgb(b, r, g);
+
+            // Envia a cor calculada para o LED atual
+            pio_sm_put_blocking(pio, sm, color);
+        }
+
+        // Pausa para respeitar a taxa de quadros por segundo (FPS)
+        sleep_ms(delay);
+    }
+}
+
 void animacao_5(PIO pio, uint sm, int fps) {
     const int delay = 1000 / fps;  // Calcula o intervalo de tempo por frame em milissegundos
     const double pi = 3.14159265359;
@@ -266,71 +360,67 @@ void animacao_5(PIO pio, uint sm, int fps) {
     }
 }
 
-//Animação 6
+/* Animação 6: Exibe uma sequência de quadros com padrões de cores em LEDs, simulando uma animação com mudanças graduais
+   entre as cores preto, vermelho, azul, verde e amarelo. Cada quadro possui um padrão específico de LEDs iluminados.*/
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
 void animacao_6(PIO pio, uint sm, int fps) { 
     for (int frame = 0; frame < 5; frame++) {
-        uint32_t color2 = calcular_cor_rgb(0.0, 0.0, 0.0);
+        uint32_t color2 = calcular_cor_rgb(0.0, 0.0, 0.0); // Cor de fundo (preto)
         
-        if (frame == 0)
-        {
+        if (frame == 0) { // Primeiro quadro: Um LED vermelho na posição 12
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.0);
-                if (i==12)
-                {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.0); // Vermelho
+                if (i == 12) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else if (frame == 1)
-        {
+        } else if (frame == 1) { // Segundo quadro: LEDs ciano em posições específicas
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.5);
-                if (i==6 || i==7 || i==8 || i==11 || i==12 || i==13 || i==16 || i==17 || i==18)
-                {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.5); // Ciano
+                if (i == 6 || i == 7 || i == 8 || i == 11 || i == 12 || i == 13 || i == 16 || i == 17 || i == 18) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        }else if (frame == 2)
-        {
+        } else if (frame == 2) { // Terceiro quadro: Todos os LEDs amarelos
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0);
-                if (i==0 || i==1 || i==2 || i==3 || i==4 || i==5 || i==6 || i==7 || i==8 || i==9 || i==10 || i==11 || i==12 || i==13 || i==14 || i==15 || i==16 || i==17 || i==18 || i==19 || i==20 || i==21 || i==22 || i==23 || i==24 )
-                {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0); // Amarelo
+                if (i >= 0 && i <= 24) { // Todos os LEDs
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else if (frame == 3)
-        {
+        } else if (frame == 3) { // Quarto quadro: LEDs azuis em um padrão específico
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5);
-                if (i==0 || i==1 || i==2 || i==3 || i==4 || i==5 || i==9 || i==10 || i==14 || i==15 || i==19 || i==20 || i==21 || i==22 || i==23 || i==24 )
-                {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5); // Azul
+                if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || 
+                    i == 9 || i == 10 || i == 14 || i == 15 || i == 19 || 
+                    i == 20 || i == 21 || i == 22 || i == 23 || i == 24) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else
-        {
+        } else { // Quinto quadro: LEDs verdes em posições específicas
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0);
-                if (i==6 || i==7 || i==8 || i==11 || i==13 || i==16 || i==17 || i==18)
-                {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0); // Verde
+                if (i == 6 || i == 7 || i == 8 || i == 11 || i == 13 || i == 16 || i == 17 || i == 18) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
         }
-        sleep_ms(1000 / fps);
+        sleep_ms(1000 / fps); // Pausa para controlar a taxa de quadros por segundo
     }
 }
-
 
 // Função para executar a ação correspondente à tecla pressionada
 // Parâmetros:
@@ -347,6 +437,9 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
             break;
         case '2': // Executa a animação 3 com 2 fps
             animacao_3(pio, sm, 2);
+            break;
+        case '3': // Executa a animação 4 com 10 fps
+            animacao_4(pio, sm, 10);
             break;
         case '5': // Executa a animação 5 com 10 fps 
             animacao_5(pio, sm, 10); 
