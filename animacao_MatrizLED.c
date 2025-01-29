@@ -222,6 +222,9 @@ void animacao_3(PIO pio, uint sm, int fps) {
 // - sm: Máquina de estado usada para o controle
 // - fps: Taxa de quadros por segundo da animação
 void animacao_4(PIO pio, uint sm, int fps){
+    
+    uint32_t delay = 1000/fps;
+    
 
 
 }
