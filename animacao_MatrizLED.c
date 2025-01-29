@@ -265,6 +265,73 @@ void animacao_5(PIO pio, uint sm, int fps) {
         sleep_ms(delay);
     }
 }
+
+//Animação 6
+void animacao_6(PIO pio, uint sm, int fps) { 
+    for (int frame = 0; frame < 5; frame++) {
+        uint32_t color2 = calcular_cor_rgb(0.0, 0.0, 0.0);
+        
+        if (frame == 0)
+        {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.0);
+                if (i==12)
+                {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        } else if (frame == 1)
+        {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.5);
+                if (i==6 || i==7 || i==8 || i==11 || i==12 || i==13 || i==16 || i==17 || i==18)
+                {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }else if (frame == 2)
+        {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0);
+                if (i==0 || i==1 || i==2 || i==3 || i==4 || i==5 || i==6 || i==7 || i==8 || i==9 || i==10 || i==11 || i==12 || i==13 || i==14 || i==15 || i==16 || i==17 || i==18 || i==19 || i==20 || i==21 || i==22 || i==23 || i==24 )
+                {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        } else if (frame == 3)
+        {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5);
+                if (i==0 || i==1 || i==2 || i==3 || i==4 || i==5 || i==9 || i==10 || i==14 || i==15 || i==19 || i==20 || i==21 || i==22 || i==23 || i==24 )
+                {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        } else
+        {
+            for (int i = 0; i < NUM_PIXELS; i++) {
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0);
+                if (i==6 || i==7 || i==8 || i==11 || i==13 || i==16 || i==17 || i==18)
+                {
+                    pio_sm_put_blocking(pio, sm, color1);
+                } else {
+                    pio_sm_put_blocking(pio, sm, color2);
+                }  
+            }
+        }
+        sleep_ms(1000 / fps);
+    }
+}
+
+
 // Função para executar a ação correspondente à tecla pressionada
 // Parâmetros:
 // - key: Caractere da tecla pressionada
@@ -283,6 +350,8 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
             break;
         case '5': // Executa a animação 5 com 10 fps 
             animacao_5(pio, sm, 10); 
+        case '6': // Executa a animação 6 com 2 fps
+            animacao_6(pio, sm, 2);
             break;
         case 'A': // Desliga todos os LEDs (cor preta)
             configurar_todos_leds(pio, sm, 0.0, 0.0, 0.0);
