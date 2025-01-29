@@ -262,7 +262,16 @@ void animacao_4(PIO pio, uint sm, int fps){
     int numero8[13] = {23,22,21,18,11,8,1,2,3,6,13,16,12};
     int numero9[12] = {12,13,16,23,22,21,18,11,8,1,2,3};
 
-
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero9,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=13;i++){configurar_alguns_leds(numero8,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=7;i++){configurar_alguns_leds(numero7,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero6,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero5,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=9;i++){configurar_alguns_leds(numero4,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero3,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero2,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=5;i++){configurar_alguns_leds(numero1,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero0,i,pio,sm,1.0,1.0,1.0);sleep_ms(delay);}sleep_ms(delay);
 
 }
 void animacao_5(PIO pio, uint sm, int fps) {
