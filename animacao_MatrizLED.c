@@ -57,6 +57,8 @@ void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
     }
 }
 
+
+
 // Configura a GPIO e inicializa a PIO para controlar os LEDs
 // Parâmetros:
 // - pio: Instância do bloco PIO
@@ -212,6 +214,17 @@ void animacao_3(PIO pio, uint sm, int fps) {
         sleep_ms(1000 / fps);
     }
 }
+
+// Animações
+// Executa a animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_4(PIO pio, uint sm, int fps){
+
+
+}
 void animacao_5(PIO pio, uint sm, int fps) {
     const int delay = 1000 / fps;  // Calcula o intervalo de tempo por frame em milissegundos
     const double pi = 3.14159265359;
@@ -247,7 +260,7 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
         case '0': animacao_1(pio, sm, 10); break;
         // case '1': animacao_2(pio, sm, 10); break;
         case '2': animacao_3(pio, sm, 2); break;
-        // case '3': animacao_4(pio, sm, 10); break;
+        case '3': animacao_4(pio, sm, 10); break;
          case '4': animacao_5(pio, sm, 10); break;
         // case '5': animacao_6(pio, sm, 10); break;
         // case '6': animacao_7(pio, sm, 10); break;
