@@ -59,8 +59,6 @@ void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
     }
 }
 
-
-
 // Configura alguns LEDs para uma cor específica
 // Parâmetros:
 // - int *leds : ponteiro para vetor contendo os LEDs que serão acesos
@@ -87,7 +85,6 @@ void configurar_alguns_leds(int *leds,int quant_leds,PIO pio, uint sm, double r,
         
     }
 }
-
 
 // Função para configurar a GPIO e inicializar o PIO para controlar a matriz
 // Parâmetros:
@@ -273,8 +270,7 @@ void animacao_3(PIO pio, uint sm, int fps) {
     }
 }
 
-// Animações
-// Executa a animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
+// Animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Máquina de estado usada para o controle
@@ -328,6 +324,7 @@ void animacao_5(PIO pio, uint sm, int fps) {
         sleep_ms(delay);
     }
 }
+
 // Função para executar a ação correspondente à tecla pressionada
 // Parâmetros:
 // - key: Caractere da tecla pressionada
