@@ -405,21 +405,22 @@ void animacao_6(PIO pio, uint sm, int fps) {
 // - sm: Máquina de estado utilizada
 void executar_acao_tecla(char key, PIO pio, uint sm) {
     switch (key) {
-        case '0': // Executa a animação 1 com 10 fps
+        case '1': // Executa a animação 1 com 10 fps
             animacao_1(pio, sm, 10);
             break;
-        case '1': // Executa a animação 2 com 5 fps
+        case '2': // Executa a animação 2 com 5 fps
             animacao_2(pio, sm, 5);
             break;
-        case '2': // Executa a animação 3 com 2 fps
+        case '3': // Executa a animação 3 com 2 fps
             animacao_3(pio, sm, 2);
             break;
-        case '3': // Executa a animação 4 com 10 fps
+        case '4': // Executa a animação 4 com 10 fps
             animacao_4(pio, sm, 10);
             break;
-        case '4': // Executa a animação 5 com 10 fps 
+        case '5': // Executa a animação 5 com 10 fps 
             animacao_5(pio, sm, 10); 
-        case '5': // Executa a animação 6 com 2 fps
+            break;
+        case '6': // Executa a animação 6 com 2 fps
             animacao_6(pio, sm, 2);
             break;
         case 'A': // Desliga todos os LEDs (cor preta)
