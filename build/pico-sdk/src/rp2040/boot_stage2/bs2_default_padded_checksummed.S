@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+// Padded and checksummed version of: C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+=======
 // Padded and checksummed version of: C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+>>>>>>> main
 
 .cpu cortex-m0plus
 .thumb

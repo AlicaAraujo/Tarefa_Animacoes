@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+set(CMAKE_ASM_COMPILER "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-gcc.exe")
+set(CMAKE_ASM_COMPILER_ARG1 "")
+set(CMAKE_AR "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ar.exe")
+set(CMAKE_ASM_COMPILER_AR "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-gcc-ar.exe")
+set(CMAKE_RANLIB "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ranlib.exe")
+set(CMAKE_ASM_COMPILER_RANLIB "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-gcc-ranlib.exe")
+set(CMAKE_LINKER "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ld.exe")
+=======
 set(CMAKE_ASM_COMPILER "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-gcc.exe")
 set(CMAKE_ASM_COMPILER_ARG1 "")
 set(CMAKE_AR "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ar.exe")
@@ -5,6 +14,7 @@ set(CMAKE_ASM_COMPILER_AR "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-
 set(CMAKE_RANLIB "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ranlib.exe")
 set(CMAKE_ASM_COMPILER_RANLIB "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-gcc-ranlib.exe")
 set(CMAKE_LINKER "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-ld.exe")
+>>>>>>> main
 set(CMAKE_LINKER_LINK "")
 set(CMAKE_LINKER_LLD "")
 set(CMAKE_ASM_COMPILER_LINKER "")

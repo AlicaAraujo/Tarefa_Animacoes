@@ -3,7 +3,11 @@ set(CMAKE_HOST_SYSTEM_NAME "Windows")
 set(CMAKE_HOST_SYSTEM_VERSION "10.0.22631")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
 
+<<<<<<< HEAD
+include("C:/Users/alici/.pico-sdk/sdk/2.1.0/cmake/preload/toolchains/pico_arm_cortex_m0plus_gcc.cmake")
+=======
 include("C:/Users/engej/.pico-sdk/sdk/2.1.0/cmake/preload/toolchains/pico_arm_cortex_m0plus_gcc.cmake")
+>>>>>>> main
 
 set(CMAKE_SYSTEM "PICO")
 set(CMAKE_SYSTEM_NAME "PICO")

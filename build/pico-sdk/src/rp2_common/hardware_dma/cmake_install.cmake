@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# Install script for directory: C:/Users/alici/.pico-sdk/sdk/2.1.0/src/rp2_common/hardware_dma
+=======
 # Install script for directory: C:/Users/engej/.pico-sdk/sdk/2.1.0/src/rp2_common/hardware_dma
+>>>>>>> main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,6 +38,10 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
+<<<<<<< HEAD
+  set(CMAKE_OBJDUMP "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
+=======
   set(CMAKE_OBJDUMP "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
+>>>>>>> main
 endif()
 
