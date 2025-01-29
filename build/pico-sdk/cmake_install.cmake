@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: C:/Users/alici/.pico-sdk/sdk/2.1.0
-=======
 # Install script for directory: C:/Users/engej/.pico-sdk/sdk/2.1.0
->>>>>>> main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,37 +34,21 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-<<<<<<< HEAD
-  set(CMAKE_OBJDUMP "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
-=======
   set(CMAKE_OBJDUMP "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
->>>>>>> main
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-<<<<<<< HEAD
-  include("C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/pico-sdk/tools/cmake_install.cmake")
-=======
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/tools/cmake_install.cmake")
->>>>>>> main
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/tools/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-<<<<<<< HEAD
-  include("C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/pico-sdk/src/cmake_install.cmake")
-=======
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/src/cmake_install.cmake")
->>>>>>> main
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/src/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-<<<<<<< HEAD
-  include("C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/pico-sdk/docs/cmake_install.cmake")
-=======
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/docs/cmake_install.cmake")
->>>>>>> main
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/docs/cmake_install.cmake")
 endif()
 

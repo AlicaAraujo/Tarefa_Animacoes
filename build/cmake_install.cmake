@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes
-=======
-# Install script for directory: C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes
->>>>>>> main
+# Install script for directory: C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,20 +34,12 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-<<<<<<< HEAD
-  set(CMAKE_OBJDUMP "C:/Users/alici/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
-=======
   set(CMAKE_OBJDUMP "C:/Users/engej/.pico-sdk/toolchain/13_3_Rel1/bin/arm-none-eabi-objdump.exe")
->>>>>>> main
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-<<<<<<< HEAD
-  include("C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/pico-sdk/cmake_install.cmake")
-=======
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/cmake_install.cmake")
->>>>>>> main
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/cmake_install.cmake")
 
 endif()
 
@@ -63,9 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
-file(WRITE "C:/Users/alici/Tarefa_Animacoes/Tarefa_Animacoes/build/${CMAKE_INSTALL_MANIFEST}"
-=======
-file(WRITE "C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> main
+file(WRITE "C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
