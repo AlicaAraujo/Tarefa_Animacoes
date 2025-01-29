@@ -337,7 +337,7 @@ void animacao_5(PIO pio, uint sm, int fps) {
 }
 
 /* Animação 6: Exibe uma sequência de quadros com padrões de cores em LEDs, simulando uma animação com mudanças graduais
-   entre as cores preto, vermelho, azul, verde e amarelo. Cada quadro possui um padrão específico de LEDs iluminados.*/
+   entre as cores azul, amarelo, lilás, verde e vermelho. Cada quadro possui um padrão específico de LEDs iluminados.*/
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Máquina de estado usada para o controle
@@ -346,36 +346,36 @@ void animacao_6(PIO pio, uint sm, int fps) {
     for (int frame = 0; frame < 5; frame++) {
         uint32_t color2 = calcular_cor_rgb(0.0, 0.0, 0.0); // Cor de fundo (preto)
         
-        if (frame == 0) { // Primeiro quadro: Um LED vermelho na posição 12
+        if (frame == 0) { // Primeiro quadro: Um LED azul na posição 12
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.0); // Vermelho
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5); // Azul
                 if (i == 12) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else if (frame == 1) { // Segundo quadro: LEDs ciano em posições específicas
+        } else if (frame == 1) { // Segundo quadro: LEDs amarelos em posições específicas
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.5); // Ciano
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0); // Amarelo
                 if (i == 6 || i == 7 || i == 8 || i == 11 || i == 12 || i == 13 || i == 16 || i == 17 || i == 18) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else if (frame == 2) { // Terceiro quadro: Todos os LEDs amarelos
+        } else if (frame == 2) { // Terceiro quadro: Todos os LEDs lilás
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.5, 0.5, 0.0); // Amarelo
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.5); // Lilás
                 if (i >= 0 && i <= 24) { // Todos os LEDs
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else if (frame == 3) { // Quarto quadro: LEDs azuis em um padrão específico
+        } else if (frame == 3) { // Quarto quadro: LEDs verdes em um padrão específico
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.0, 0.5); // Azul
+                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0); // Verde
                 if (i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || 
                     i == 9 || i == 10 || i == 14 || i == 15 || i == 19 || 
                     i == 20 || i == 21 || i == 22 || i == 23 || i == 24) {
@@ -384,9 +384,9 @@ void animacao_6(PIO pio, uint sm, int fps) {
                     pio_sm_put_blocking(pio, sm, color2);
                 }  
             }
-        } else { // Quinto quadro: LEDs verdes em posições específicas
+        } else { // Quinto quadro: LEDs vermelhos em posições específicas
             for (int i = 0; i < NUM_PIXELS; i++) {
-                uint32_t color1 = calcular_cor_rgb(0.0, 0.5, 0.0); // Verde
+                uint32_t color1 = calcular_cor_rgb(0.5, 0.0, 0.0); // Vermelho
                 if (i == 6 || i == 7 || i == 8 || i == 11 || i == 13 || i == 16 || i == 17 || i == 18) {
                     pio_sm_put_blocking(pio, sm, color1);
                 } else {
