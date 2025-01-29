@@ -336,30 +336,6 @@ void animacao_5(PIO pio, uint sm, int fps) {
     }
 }
 
-void animacao_5(PIO pio, uint sm, int fps) {
-    const int delay = 1000 / fps;  // Calcula o intervalo de tempo por frame em milissegundos
-    const double pi = 3.14159265359;
-    const int frames = 100;       // Número de frames para completar a animação
-    const double step = 2 * pi / NUM_PIXELS; // Distância da onda entre os LEDs
-
-    for (int frame = 0; frame < frames; frame++) {
-        for (int i = 0; i < NUM_PIXELS; i++) {
-            // Calcula uma onda senoidal para as cores
-            double wave_position = frame * step + i * step;
-            double r = (sin(wave_position) + 1) / 2;  // Normaliza de 0 a 1
-            double g = (sin(wave_position + 2 * pi / 3) + 1) / 2;
-            double b = (sin(wave_position + 4 * pi / 3) + 1) / 2;
-
-            // Define a cor no LED i
-            uint32_t color = calcular_cor_rgb(b, r, g);
-            pio_sm_put_blocking(pio, sm, color);
-        }
-
-        // Pausa para respeitar o FPS
-        sleep_ms(delay);
-    }
-}
-
 /* Animação 6: Exibe uma sequência de quadros com padrões de cores em LEDs, simulando uma animação com mudanças graduais
    entre as cores preto, vermelho, azul, verde e amarelo. Cada quadro possui um padrão específico de LEDs iluminados.*/
 // Parâmetros:
@@ -441,9 +417,9 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
         case '3': // Executa a animação 4 com 10 fps
             animacao_4(pio, sm, 10);
             break;
-        case '5': // Executa a animação 5 com 10 fps 
+        case '4': // Executa a animação 5 com 10 fps 
             animacao_5(pio, sm, 10); 
-        case '6': // Executa a animação 6 com 2 fps
+        case '5': // Executa a animação 6 com 2 fps
             animacao_6(pio, sm, 2);
             break;
         case 'A': // Desliga todos os LEDs (cor preta)
@@ -465,7 +441,6 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
             break;
     }
 }
-
 
 // Função principal: Configura o sistema e entra no loop principal
 int main() {
