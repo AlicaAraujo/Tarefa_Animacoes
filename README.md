@@ -99,11 +99,11 @@ Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais de
 
 **Equipe de Desenvolvimento:**
 - Desenvolvedores:
-    - Alícia
+    - Alícia (líder)
     - André Lima
     - Cláudio
     - David
-    - Edcarllos (líder)
+    - Edcarllos 
     - James
     - Tiago
 
