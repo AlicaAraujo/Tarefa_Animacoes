@@ -59,6 +59,36 @@ void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
     }
 }
 
+
+
+// Configura alguns LEDs para uma cor específica
+// Parâmetros:
+// - int *leds : ponteiro para vetor contendo os LEDs que serão acesos
+// - int quant_leds : quantidade de LEDs que acenderão
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - r: Intensidade da cor vermelha (0.0 a 1.0)
+// - g: Intensidade da cor verde (0.0 a 1.0)
+// - b: Intensidade da cor azul (0.0 a 1.0)
+void configurar_alguns_leds(int *leds,int quant_leds,PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        bool selecionado = false;
+        for(int j=0;j<quant_leds;j++){
+            if(i==leds[j]){
+                selecionado=true;
+            }
+        }
+        if(selecionado){
+            uint32_t color = calcular_cor_rgb(b, r, g);
+            pio_sm_put_blocking(pio, sm, color);
+        }else{
+            pio_sm_put_blocking(pio, sm, 0);
+        }
+        
+    }
+}
+
+
 // Função para configurar a GPIO e inicializar o PIO para controlar a matriz
 // Parâmetros:
 // - pio: Instância do bloco PIO
@@ -242,6 +272,39 @@ void animacao_3(PIO pio, uint sm, int fps) {
         sleep_ms(1000 / fps);
     }
 }
+
+// Animações
+// Executa a animação 4: Exibi uma contagem regressiva alternando entre as cores vermelho, azul, verde e branco
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_4(PIO pio, uint sm, int fps){
+    
+    uint32_t delay = 1000/fps;
+    int numero0[12] = {23,22,21,18,11,8,1,2,3,6,13,16};
+    int numero1[5] = {21,18,11,8,1};
+    int numero2[11] = {23,22,21,18,11,12,13,6,3,2,1};
+    int numero3[11] = {23,22,21,18,11,12,13,8,1,2,3};
+    int numero4[9] = {23,16,13,12,11,18,21,8,1};
+    int numero5[11] = {21,22,23,16,13,12,11,8,1,2,3};
+    int numero6[12] = {21,22,23,16,13,6,3,2,1,8,11,12};
+    int numero7[7] = {23,22,21,18,11,8,1};
+    int numero8[13] = {23,22,21,18,11,8,1,2,3,6,13,16,12};
+    int numero9[12] = {12,13,16,23,22,21,18,11,8,1,2,3};
+
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero9,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=13;i++){configurar_alguns_leds(numero8,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=7;i++){configurar_alguns_leds(numero7,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero6,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero5,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=9;i++){configurar_alguns_leds(numero4,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero3,i,pio,sm,1.0,0.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=11;i++){configurar_alguns_leds(numero2,i,pio,sm,0.0,1.0,0.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=5;i++){configurar_alguns_leds(numero1,i,pio,sm,0.0,0.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+    for(int i=1;i<=12;i++){configurar_alguns_leds(numero0,i,pio,sm,1.0,1.0,1.0);sleep_ms(delay);}sleep_ms(delay);
+
+}
 void animacao_5(PIO pio, uint sm, int fps) {
     const int delay = 1000 / fps;  // Calcula o intervalo de tempo por frame em milissegundos
     const double pi = 3.14159265359;
@@ -280,6 +343,9 @@ void executar_acao_tecla(char key, PIO pio, uint sm) {
             break;
         case '2': // Executa a animação 3 com 2 fps
             animacao_3(pio, sm, 2);
+            break;
+        case '3': // Executa a animação 4 com 10 fps
+            animacao_4(pio, sm, 10);
             break;
         case '5': // Executa a animação 5 com 10 fps 
             animacao_5(pio, sm, 10); 
