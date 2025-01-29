@@ -8,21 +8,21 @@
 #include "pico/stdlib.h"
 #include "animacao_MatrizLED.pio.h"
 
-// Configurações gerais
-#define NUM_PIXELS 25
-#define OUT_PIN 7
+// Configurações gerais da matriz de LEDs
+#define NUM_PIXELS 25 // Número total de LEDs na matriz
+#define OUT_PIN 7 // GPIO usado para controlar a matriz de LEDs
 
-// Teclado matricial
-#define TECLADO_PIN_1 28
-#define TECLADO_PIN_2 27
-#define TECLADO_PIN_3 26
-#define TECLADO_PIN_4 22
-#define COL1_PIN 21
-#define COL2_PIN 20
-#define COL3_PIN 19
-#define COL4_PIN 18
+// Configurações para o teclado matricial
+#define TECLADO_PIN_1 28 // GPIO conectado à linha 1 do teclado
+#define TECLADO_PIN_2 27 // GPIO conectado à linha 2 do teclado
+#define TECLADO_PIN_3 26 // GPIO conectado à linha 3 do teclado
+#define TECLADO_PIN_4 22 // GPIO conectado à linha 4 do teclado
+#define COL1_PIN 21 // GPIO conectado à coluna 1 do teclado
+#define COL2_PIN 20 // GPIO conectado à coluna 2 do teclado
+#define COL3_PIN 19 // GPIO conectado à coluna 3 do teclado
+#define COL4_PIN 18 // GPIO conectado à coluna 4 do teclado
 
-// Templates
+// Declaração das funções de animação (prototipadas)
 void animacao_1(PIO pio, uint sm, int fps);
 void animacao_2(PIO pio, uint sm, int fps);
 void animacao_3(PIO pio, uint sm, int fps);
@@ -31,11 +31,13 @@ void animacao_5(PIO pio, uint sm, int fps);
 void animacao_6(PIO pio, uint sm, int fps);
 void animacao_7(PIO pio, uint sm, int fps);
 
-// Calcula a cor RGB para os LEDs
+// Função para calcular a cor RGB para os LEDs
 // Parâmetros:
-// - b: Intensidade da cor azul (0.0 a 1.0)
-// - r: Intensidade da cor vermelha (0.0 a 1.0)
-// - g: Intensidade da cor verde (0.0 a 1.0)
+// - b: Intensidade do canal azul (valor de 0.0 a 1.0)
+// - r: Intensidade do canal vermelho (valor de 0.0 a 1.0)
+// - g: Intensidade do canal verde (valor de 0.0 a 1.0)
+// Retorna:
+// - Valor de 32 bits no formato (G, R, B)
 uint32_t calcular_cor_rgb(double b, double r, double g) {
     unsigned char R = r * 255;
     unsigned char G = g * 255;
@@ -43,19 +45,20 @@ uint32_t calcular_cor_rgb(double b, double r, double g) {
     return (G << 24) | (R << 16) | (B << 8);
 }
 
-// Configura todos os LEDs para uma cor específica
+// Função para configurar todos os LEDs da matriz com uma única cor
 // Parâmetros:
 // - pio: Instância do bloco PIO
-// - sm: Máquina de estado usada para o controle
-// - r: Intensidade da cor vermelha (0.0 a 1.0)
-// - g: Intensidade da cor verde (0.0 a 1.0)
-// - b: Intensidade da cor azul (0.0 a 1.0)
+// - sm: Máquina de estado utilizada
+// - r: Intensidade do vermelho (valor de 0.0 a 1.0)
+// - g: Intensidade do verde (valor de 0.0 a 1.0)
+// - b: Intensidade do azul (valor de 0.0 a 1.0)
 void configurar_todos_leds(PIO pio, uint sm, double r, double g, double b) {
     for (int i = 0; i < NUM_PIXELS; i++) {
         uint32_t color = calcular_cor_rgb(b, r, g);
         pio_sm_put_blocking(pio, sm, color);
     }
 }
+
 
 
 // Configura alguns LEDs para uma cor específica
@@ -86,19 +89,19 @@ void configurar_alguns_leds(int *leds,int quant_leds,PIO pio, uint sm, double r,
 }
 
 
-// Configura a GPIO e inicializa a PIO para controlar os LEDs
+// Função para configurar a GPIO e inicializar o PIO para controlar a matriz
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Ponteiro para a máquina de estado
-// - pin: GPIO conectado à matriz de LEDs
+// - pin: GPIO conectado ao controle da matriz de LEDs
 void configurar_gpio_pio(PIO pio, uint *sm, uint pin) {
     uint offset = pio_add_program(pio, &animacao_MatrizLED_program);
     *sm = pio_claim_unused_sm(pio, true);
     animacao_MatrizLED_program_init(pio, *sm, offset, pin);
 }
 
-// Configura os pinos para o teclado matricial
-// Inicializa as linhas como saída e as colunas como entrada
+// Função para configurar os pinos utilizados pelo teclado matricial
+// Configura as linhas como saída e as colunas como entrada
 void configurar_teclado() {
     // Configurar pinos das linhas como saída
     gpio_init(TECLADO_PIN_1);
@@ -128,7 +131,7 @@ void configurar_teclado() {
     gpio_pull_down(COL4_PIN);
 }
 
-// Verifica qual tecla do teclado matricial foi pressionada
+// Função para verificar qual tecla do teclado matricial foi pressionada
 // Retorna:
 // - Caractere correspondente à tecla pressionada
 // - 0 se nenhuma tecla foi pressionada
@@ -156,8 +159,9 @@ char verificar_teclado() {
     return 0; // Nenhuma tecla pressionada
 }
 
-// Animações
-// Executa a animação 1: alternância entre vermelho e verde
+// ANIMAÇÕES 
+
+// Animação 1: alternância entre vermelho e verde
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Máquina de estado usada para o controle
@@ -172,8 +176,35 @@ void animacao_1(PIO pio, uint sm, int fps) {
     }
 }
 
-// Animações
-// Executa a animação 3: alternância entre  as letras D(azul), A(amarelo), V(roxo), I(verde) e D(vermelho)
+// Animação 2: Efeito de onda de cores (alterna entre azul, verde e vermelho em sequência)
+// Parâmetros:
+// - pio: Instância do bloco PIO
+// - sm: Máquina de estado usada para o controle
+// - fps: Taxa de quadros por segundo da animação
+void animacao_2(PIO pio, uint sm, int fps) {
+    for (int frame = 0; frame < 50; frame++) { // Duração de 50 quadros
+        for (int i = 0; i < NUM_PIXELS; i++) {
+            double intensidade = 0.5 + 0.5 * sin((frame + i) * 0.3); // Onda de intensidade
+            uint32_t cor;
+
+            if ((frame / 10) % 3 == 0) {
+                // Azul com onda
+                cor = calcular_cor_rgb(intensidade, 0.0, 0.0);
+            } else if ((frame / 10) % 3 == 1) {
+                // Verde com onda
+                cor = calcular_cor_rgb(0.0, 0.0, intensidade);
+            } else {
+                // Vermelho com onda
+                cor = calcular_cor_rgb(0.0, intensidade, 0.0);
+            }
+
+            pio_sm_put_blocking(pio, sm, cor); // Envia cor para cada LED
+        }
+        sleep_ms(1000 / fps); // Aguarda até o próximo quadro
+    }
+}
+ 
+// Animação 3: Alternância entre as letras D(azul), A(amarelo), V(roxo), I(verde) e D(vermelho)
 // Parâmetros:
 // - pio: Instância do bloco PIO
 // - sm: Máquina de estado usada para o controle
@@ -297,45 +328,64 @@ void animacao_5(PIO pio, uint sm, int fps) {
         sleep_ms(delay);
     }
 }
-
-// Mapear ações às teclas
-// Mapeia e executa ações com base na tecla pressionada
+// Função para executar a ação correspondente à tecla pressionada
 // Parâmetros:
 // - key: Caractere da tecla pressionada
 // - pio: Instância do bloco PIO
-// - sm: Máquina de estado usada para o controle
+// - sm: Máquina de estado utilizada
 void executar_acao_tecla(char key, PIO pio, uint sm) {
     switch (key) {
-        case '0': animacao_1(pio, sm, 10); break;
-        // case '1': animacao_2(pio, sm, 10); break;
-        case '2': animacao_3(pio, sm, 2); break;
-        case '3': animacao_4(pio, sm, 10); break;
-         case '4': animacao_5(pio, sm, 10); break;
-        // case '5': animacao_6(pio, sm, 10); break;
-        // case '6': animacao_7(pio, sm, 10); break;
-        case 'A': configurar_todos_leds(pio, sm, 0.0, 0.0, 0.0); break;
-        case 'B': configurar_todos_leds(pio, sm, 0.0, 0.0, 1.0); break;
-        case 'C': configurar_todos_leds(pio, sm, 0.8, 0.0, 0.0); break;
-        case 'D': configurar_todos_leds(pio, sm, 0.0, 0.5, 0.0); break;
-        case '#': configurar_todos_leds(pio, sm, 0.2, 0.2, 0.2); break;
+        case '0': // Executa a animação 1 com 10 fps
+            animacao_1(pio, sm, 10);
+            break;
+        case '1': // Executa a animação 2 com 5 fps
+            animacao_2(pio, sm, 5);
+            break;
+        case '2': // Executa a animação 3 com 2 fps
+            animacao_3(pio, sm, 2);
+            break;
+        case '3': // Executa a animação 4 com 10 fps
+            animacao_4(pio, sm, 10);
+            break;
+        case '5': // Executa a animação 5 com 10 fps 
+            animacao_5(pio, sm, 10); 
+            break;
+        case 'A': // Desliga todos os LEDs (cor preta)
+            configurar_todos_leds(pio, sm, 0.0, 0.0, 0.0);
+            break;
+        case 'B': // Configura todos os LEDs na cor azul
+            configurar_todos_leds(pio, sm, 0.0, 0.0, 1.0);
+            break;
+        case 'C': // Configura todos os LEDs na cor vermelha
+            configurar_todos_leds(pio, sm, 0.8, 0.0, 0.0);
+            break;
+        case 'D': // Configura todos os LEDs na cor verde
+            configurar_todos_leds(pio, sm, 0.0, 0.5, 0.0);
+            break;
+        case '#': // Configura todos os LEDs com baixa intensidade branca
+            configurar_todos_leds(pio, sm, 0.2, 0.2, 0.2);
+            break;
+        default: // Nenhuma ação para outras teclas
+            break;
     }
 }
 
-// Função principal
-int main() {
-    PIO pio = pio0;
-    uint sm;
 
-    // Inicializa hardware
+// Função principal: Configura o sistema e entra no loop principal
+int main() {
+    PIO pio = pio0; // Define o bloco PIO a ser usado
+    uint sm; // Máquina de estado
+
+    // Inicializa o hardware
     stdio_init_all();
     configurar_gpio_pio(pio, &sm, OUT_PIN);
     configurar_teclado();
 
     while (true) {
-        char key = verificar_teclado();
+        char key = verificar_teclado(); // Verifica a tecla pressionada
         if (key) {
-            executar_acao_tecla(key, pio, sm);
+            executar_acao_tecla(key, pio, sm); // Executa a ação correspondente
         }
-        sleep_ms(100);
+        sleep_ms(100); // Atraso para evitar sobrecarga
     }
 }

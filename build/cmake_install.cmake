@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes
+# Install script for directory: C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/cmake_install.cmake")
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

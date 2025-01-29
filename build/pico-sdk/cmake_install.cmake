@@ -39,16 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/tools/cmake_install.cmake")
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/tools/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/src/cmake_install.cmake")
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/src/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/engej/Videos/Tarefa02/Tarefa_Animacoes/build/pico-sdk/docs/cmake_install.cmake")
+  include("C:/Users/engej/Videos/Essa aqui/Tarefa_Animacoes/build/pico-sdk/docs/cmake_install.cmake")
 endif()
 
